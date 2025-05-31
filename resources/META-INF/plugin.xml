@@ -1,0 +1,33 @@
+<idea-plugin url="https://github.com/koxudaxi/t-linter-pycharm-plugin">
+    <id>com.koxudaxi.tlinter</id>
+    <name>T-Linter</name>
+    <vendor email="koaxudai@gmail.com">Koudai Aono @koxudaxi</vendor>
+    
+    <description><![CDATA[
+    T-Linter provides syntax highlighting for PEP 750 template strings in PyCharm.
+    
+    <p>Features:</p>
+    <ul>
+        <li>Automatic language injection for template strings with type annotations</li>
+        <li>Support for <code>Annotated[Template, "language"]</code> pattern</li>
+        <li>Type alias support (e.g., <code>type html = Annotated[Template, "html"]</code>)</li>
+        <li>Function parameter type inference</li>
+        <li>Support for HTML, SQL, JSON, YAML, JavaScript, TypeScript, CSS, and more</li>
+    </ul>
+    ]]></description>
+    
+    <change-notes><![CDATA[
+    <h3>0.0.1</h3>
+    <ul>
+        <li>Initial release with PEP 750 template string support</li>
+        <li>Language injection for annotated template strings</li>
+    </ul>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.python</depends>
+    
+    <extensions defaultExtensionNs="com.intellij">
+        <multiHostInjector implementation="com.koxudaxi.tlinter.TemplateStringsInjector"/>
+    </extensions>
+</idea-plugin>
