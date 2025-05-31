@@ -6,7 +6,7 @@ opentest4j = "1.3.0"
 # plugins
 kotlin = "2.1.0"
 changelog = "2.2.0"
-gradleIntelliJPlugin = "2.5.1-SNAPSHOT"
+gradleIntelliJPlugin = "2.6.1-SNAPSHOT"
 qodana = "0.1.13"
 kover = "0.9.1"
 
