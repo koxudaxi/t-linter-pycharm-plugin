@@ -67,11 +67,22 @@ class TemplateStringsInjector : PyInjectorBase() {
         language: Language
     ): PyInjectionUtil.InjectionResult {
         registrar.startInjecting(language)
-        host.decodedFragments.forEach {
-            if (!it.second.startsWith("{")) {
-                registrar.addPlace("", "", host, TextRange(it.first.startOffset, it.first.endOffset))
+        
+        // Process each fragment of the template string
+        // decodedFragments splits the string at template expression boundaries
+        // For t"Hello {name}!", it would be: ["Hello ", "{name}", "!"]
+        host.decodedFragments.forEach { fragment ->
+            val textRange = fragment.first
+            val content = fragment.second
+            
+            // Skip template expressions - they start with '{'
+            // This preserves Python syntax highlighting for expressions
+            if (!content.startsWith("{")) {
+                // Inject language highlighting for non-expression content
+                registrar.addPlace("", "", host, textRange)
             }
         }
+        
         try {
             registrar.doneInjecting()
         }
