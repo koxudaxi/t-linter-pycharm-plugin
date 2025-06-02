@@ -67,7 +67,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          cache-cleanup: false
+          cache-cleanup: never
 
       # Set environment variables
       - name: Export Properties
