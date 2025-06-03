@@ -82,7 +82,7 @@ execute_query(t"SELECT * FROM products WHERE price < {max_price}")
 ## Requirements
 
 - PyCharm 2025.2 or later
-- Python 3.12 or later (for PEP 750 support)
+- Python 3.14.0b1 or later (for PEP 750 support)
 
 ## License
 

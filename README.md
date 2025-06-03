@@ -12,6 +12,8 @@ T-Linter provides syntax highlighting for PEP 750 template strings in PyCharm.
 - 🔍 Function parameter type inference
 - 🌐 Support for HTML, SQL, JSON, YAML, JavaScript, TypeScript, CSS, and more
 
+![Syntax Highlighting Example](docs/images/img.png)
+
 ## Usage
 
 ```python
