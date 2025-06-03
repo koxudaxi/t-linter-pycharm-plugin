@@ -1,8 +1,19 @@
-# t-linter PyCharm Plugin
+# TLinter PyCharm Plugin
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![JetBrains Plugin](https://img.shields.io/badge/JetBrains%20Plugin-27541-orange.svg)](https://plugins.jetbrains.com/plugin/27541-tlinter)
 
 <!-- Plugin description -->
-T-Linter provides syntax highlighting for PEP 750 template strings in PyCharm.
+TLinter provides syntax highlighting for PEP 750 template strings in PyCharm.
+
+## Installation
+
+Install directly from the JetBrains Marketplace:
+- [TLinter Plugin](https://plugins.jetbrains.com/plugin/27541-tlinter)
+
+Or install from within PyCharm:
+1. Go to **Settings/Preferences** → **Plugins**
+2. Search for "TLinter"
+3. Click **Install**
 
 ## Features
 

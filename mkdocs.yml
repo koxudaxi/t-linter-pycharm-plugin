@@ -1,4 +1,4 @@
-site_name: T-Linter PyCharm Plugin
+site_name: TLinter PyCharm Plugin
 site_description: A JetBrains PyCharm plugin for PEP750 template strings with type annotations.
 
 theme:
