@@ -1,10 +1,10 @@
 <idea-plugin url="https://github.com/koxudaxi/t-linter-pycharm-plugin">
     <id>com.koxudaxi.tlinter</id>
-    <name>T-Linter</name>
+    <name>TLinter</name>
     <vendor email="koaxudai@gmail.com">Koudai Aono @koxudaxi</vendor>
     
     <description><![CDATA[
-    T-Linter provides syntax highlighting for PEP 750 template strings in PyCharm.
+    TLinter provides syntax highlighting for PEP 750 template strings in PyCharm.
     
     <p>Features:</p>
     <ul>

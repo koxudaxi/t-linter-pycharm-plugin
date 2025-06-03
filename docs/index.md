@@ -1,6 +1,6 @@
-# t-linter PyCharm Plugin
+# TLinter PyCharm Plugin
 
-T-Linter provides syntax highlighting for PEP 750 template strings in PyCharm.
+TLinter provides syntax highlighting for PEP 750 template strings in PyCharm.
 
 ## Features
 
@@ -14,7 +14,7 @@ T-Linter provides syntax highlighting for PEP 750 template strings in PyCharm.
 
 1. Open PyCharm
 2. Go to Settings/Preferences → Plugins
-3. Search for "T-Linter"
+3. Search for "TLinter"
 4. Click Install
 
 ## Usage
