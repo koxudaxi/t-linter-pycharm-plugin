@@ -129,24 +129,26 @@ class TemplateStringsInjector : PyInjectorBase() {
             if (resolved is PyTargetExpression) {
                 return getLanguageFromTypeAlias(resolved, null)
             }
+            else if (resolved is PyTypeAliasStatement) {
+                val pySubscriptionExpression = resolved.typeExpression as? PySubscriptionExpression ?: return null
+                // Check if it's a type alias for Template
+                return getLanguageFromAnnotated(pySubscriptionExpression, null)
+            }
         }
         
         return null
     }
+    private fun getLanguageFromAnnotated(pySubscriptionExpression: PySubscriptionExpression, context: TypeEvalContext?): String? {
 
-    private fun getLanguageFromTypeAlias(targetExpression: PyTargetExpression, context: TypeEvalContext?): String? {
-        // Check if it's a type alias (type html = Annotated[Template, "html"])
-        val assignedValue = targetExpression.findAssignedValue() as? PySubscriptionExpression ?: return null
-        
         // Check if it's Annotated[...]
-        val operand = assignedValue.operand as? PyReferenceExpression ?: return null
+        val operand = pySubscriptionExpression.operand as? PyReferenceExpression ?: return null
         if (!operand.isAnnotated) return null
 
         // Get the arguments
-        val indexExpression = assignedValue.indexExpression as? PyTupleExpression ?: return null
+        val indexExpression = pySubscriptionExpression.indexExpression as? PyTupleExpression ?: return null
         val args = indexExpression.elements
         if (args.size < 2) return null
-        
+
         // Check if first argument is Template
         val firstArg = args[0] as? PyReferenceExpression ?: return null
         if (!firstArg.isTemplate) return null
@@ -154,6 +156,14 @@ class TemplateStringsInjector : PyInjectorBase() {
         // Get the language from second argument
         val secondArg = args[1] as? PyStringLiteralExpression ?: return null
         return secondArg.stringValue
+    }
+
+    private fun getLanguageFromTypeAlias(targetExpression: PyTargetExpression, context: TypeEvalContext?): String? {
+        // Check if it's a type alias (type html = Annotated[Template, "html"])
+        val assignedValue = targetExpression.findAssignedValue() as? PySubscriptionExpression ?: return null
+        
+        // Check if it's Annotated[Template, "html"]
+        return getLanguageFromAnnotated(assignedValue, context)
     }
 
     private fun registerPyElementInjection(
@@ -189,7 +199,7 @@ class TemplateStringsInjector : PyInjectorBase() {
                 for ((arg, param) in mappedParams) {
                     if (arg == host && param != null) {
                         // Check parameter annotation
-                        val paramAnnotation = (param as? PyNamedParameter)?.annotation?.value
+                        val paramAnnotation = (param.parameter as? PyNamedParameter)?.annotation?.value
                         val language = getLanguageFromAnnotation(paramAnnotation)
                         if (language != null) {
                             LANGUAGES[language]?.let { lang ->
